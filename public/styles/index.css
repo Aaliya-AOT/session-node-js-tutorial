@@ -1,0 +1,20 @@
+body{
+    font-family: 'montserrat';
+}
+.register-container{
+    border: 2px solid rgb(202, 199, 199);
+    border-radius: 12px;
+    padding: 40px 40px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position:fixed;
+    top: 15%;
+    left: 38%;
+}
+.form-container{
+    display: flex;
+    flex-direction: column;
+    
+}
