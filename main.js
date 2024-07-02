@@ -30,7 +30,6 @@ const loginRedirectUser = (req, res) => {
 const loginUser = (req, res) => {
     const { username, password } = req.body;
     const usersFound = user.find(usersFound => usersFound.username === username && usersFound.password === password)
-    console.log("user found: ", usersFound)
     if (usersFound) {
         req.session.user = usersFound;
         res.render('home', { user: req.session.user.username });
@@ -42,7 +41,9 @@ const loginUser = (req, res) => {
 }
 
 const renderUser = (req, res) => {
+    console.log("üsers:",user)
     if (req.session.user) {
+        console.log("üsers:",user)
         res.render('home', { user: req.session.user });
     }
     else {
@@ -64,13 +65,34 @@ const logoutUser = (req, res) => {
     res.render('register')
 }
 
-const deleteUser = (req, res) => {
+// const deleteUser = (req, res) => {
+//     if (req.session.user) {
+//         const userId = req.session.user.id
+//         const userDelete = user.find(u => u.id === userId);
+//         if (userDelete) {
+//             user = user.filter(u => u.id !== userId);
+//             console.log("deleted: ",user)
+//         }
+//         req.session.destroy(error => {
+//             if (error) {
+//                 return res.status(500).send('Unable to log out and delete account');
+//             }
+//             res.render('register')
+//         });
+//     } else {
+//         res.render('register')
+//     }
+// };
+
+const deleteRedirectUser = (req,res) =>{
+    console.log("üsers deleted???:",user)
+    res.render('register')
     if (req.session.user) {
         const userId = req.session.user.id
         const userDelete = user.find(u => u.id === userId);
         if (userDelete) {
-            user = user.filter(u => u.id !== userId);
-            console.log("deleted: ",user)
+            let usersDelete = user.filter(u => u.id !== userId);
+            console.log("deleted: ",usersDelete)
         }
         req.session.destroy(error => {
             if (error) {
@@ -81,10 +103,6 @@ const deleteUser = (req, res) => {
     } else {
         res.render('register')
     }
-};
-
-const deleteRedirectUser = (req,res) =>{
-    res.render('register')
 }
 module.exports = {
     createUser,
@@ -92,7 +110,7 @@ module.exports = {
     loginRedirectUser,
     userExists,
     logoutUser,
-    deleteUser,
+    // deleteUser,
     deleteRedirectUser,
     loginUser
 }

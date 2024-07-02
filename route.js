@@ -9,6 +9,6 @@ route.get('/login',loginRedirectUser)
 route.post('/login',loginUser)
 route.get('/logout',logoutUser)
 route.get('/delete-user',deleteRedirectUser)
-route.post('/delete-user',deleteUser)
+// route.post('/delete-user',deleteUser)
 
 module.exports = route
